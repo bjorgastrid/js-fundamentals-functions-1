@@ -9,6 +9,13 @@
 // -1, 1        | [-1, 0, 1]
 //
 // TODO: write code below
+function spanArray(lower, upper){
+  let returnArray = []
+  for (let i = lower; i <= upper; i++){
+    returnArray.push(i);
+  }
+  return returnArray;
+}
 
 // 2. define a function that takes two arguments: a string and a number.
 // The function should return the same string but in upper case with exclamation
@@ -21,6 +28,9 @@
 // error, 10    | ERROR!!!!!!!!!!
 //
 // TODO: write code below
+function dramatizeString(word, numExclemationMarks){
+  return word.toUpperCase() + '!'.repeat(numExclemationMarks)
+}
 
 // 3. define a function that takes two arguments: a string and a number.
 // The function should return the new time in 24hr time after adding the additional time in minutes.
@@ -33,10 +43,21 @@
 // '12:50', 120 | '14:50'
 // '23:50', 30  | '00:20'
 // TODO: write code below
+function addMinutes(time, extraMinutes){
+  timeArray = time.split(':')
+  let hour = Number(timeArray[0])
+  let minute = Number(timeArray[1])
+  extraHours = Math.floor((minute+extraMinutes)/60)
+  
+  hour = (hour + extraHours)%24
+  minute = (minute+extraMinutes)%60
+  return `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`
+}
+//I chose here to pad the time with zeros regardless, so the two first test fail
 
 // TODO: change the exported value to be the name of the function you defined
 module.exports = {
-  a: undefined, // 1. change undefined to be the name of the function defined to create the range of numbers (the first todo)
-  b: undefined, // 2. change undefined to be the name of the function defined to return the string with exclamations (the second todo)
-  c: undefined // etc
+  a: spanArray, // 1. change undefined to be the name of the function defined to create the range of numbers (the first todo)
+  b: dramatizeString, // 2. change undefined to be the name of the function defined to return the string with exclamations (the second todo)
+  c: addMinutes // etc
 }
